@@ -1,7 +1,9 @@
 'use strict';
 var setup = document.querySelector('.setup');
 setup.classList.remove('hidden');
+document.querySelector('.setup').classList.remove('hidden');
 var similarListElement = setup.querySelector('.setup-similar-list');
+
 var WIZARD_NAMES = ['Иван', 'Хуан', 'Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURENAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
@@ -12,16 +14,16 @@ var getRandomIntegerFromInterval = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 var getRandomElementFromArray = function () {
-  var randomIndexName = getRandomIntegerFromInterval(0, WIZARD_NAMES.length - 1);
-  var randomIndexSureName = getRandomIntegerFromInterval(0, WIZARD_SURENAMES.length - 1);
-  var randomIndexColor = getRandomIntegerFromInterval(0, COAT_COLOR.length - 1);
-  var randomIndexEyesColor = getRandomIntegerFromInterval(0, EYES_COLOR.length - 1);
+  WIZARD_NAMES[i] = getRandomIntegerFromInterval(0, WIZARD_NAMES.length - 1);
+  WIZARD_SURENAMES[i] = getRandomIntegerFromInterval(0, WIZARD_SURENAMES.length - 1);
+  COAT_COLOR[i] = getRandomIntegerFromInterval(0, COAT_COLOR.length - 1);
+  EYES_COLOR[i] = getRandomIntegerFromInterval(0, EYES_COLOR.length - 1);
 };
 var createWizard = function () {
   var wizard = {
-    name: getRandomElementFromArray(WIZARD_NAMES[randomIndexName] + '' + WIZARD_SURENAMES[randomIndexSureName] + ''),
-    coatColor: getRandomElementFromArray(COAT_COLOR[randomIndexColor]),
-    eyes: getRandomElementFromArray(EYES_COLOR[randomIndexEyesColor])
+    name: getRandomElementFromArray(WIZARD_NAMES[i]) + '' + getRandomElementFromArray(WIZARD_SURENAMES[i] + ''),
+    coatColor: getRandomElementFromArray(COAT_COLOR[i]),
+    eyes: getRandomElementFromArray(EYES_COLOR[i])
   };
   return wizard;
 };
@@ -44,7 +46,7 @@ var renderWizard = function (wizard) {
 var fragment = document.createDocumentFragment();
 for (var j = 0; j < silimarWizards.length; j++) {
   fragment.appendChild(renderWizard(silimarWizards[j]));
-  wizardElement.appendChild(fragment);
+  similarListElement.appendChild(fragment);
 }
 var setupSilimar = document.querySelector('.setup-similar');
 setupSilimar.classList.remove('hidden');
