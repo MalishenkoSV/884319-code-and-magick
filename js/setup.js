@@ -17,7 +17,7 @@ var getRandomElementFromArray = function (arr) {
   return arr[getRandomIntegerFromInterval(0, arr.length - 1)];
 
 };
-var createWizard = function (name, coatColor, eyes ) {
+var createWizard = function () {
   var wizardObject = {
     name: getRandomElementFromArray(WIZARD_NAMES) + ' ' + getRandomElementFromArray(WIZARD_SURNAMES),
     coatColor: getRandomElementFromArray(COAT_COLOR),
