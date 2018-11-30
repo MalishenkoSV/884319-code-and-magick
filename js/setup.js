@@ -2,6 +2,7 @@
 var setup = document.querySelector('.setup');
 setup.classList.remove('hidden');
 document.querySelector('.setup').classList.remove('hidden');
+
 var similarListElement = setup.querySelector('.setup-similar-list');
 
 var WIZARD_NAMES = ['Иван', 'Хуан', 'Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
@@ -9,7 +10,8 @@ var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', '�
 var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 var NUMBERS_WIZARD = 4;
-
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
 var getRandomIntegerFromInterval = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
@@ -46,5 +48,40 @@ for (var j = 0; j < similarWizards.length; j++) {
   fragment.appendChild(renderWizard(similarWizards[j]));
   similarListElement.appendChild(fragment);
 }
-var setupSilimar = document.querySelector('.setup-similar');
-setupSilimar.classList.remove('hidden');
+
+var openSetupPopup = document.querySelector('.setup-open');
+var closeSetupPopup = document.querySelector('.setup-close');
+
+var onPopupEscPress = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var openPopup = function () {
+  setup.classList.remove('hidden');
+};
+var closePopup = function () {
+  setup.classList.add('hidden');
+};
+
+openSetupPopup.addEventListener('click', function () {
+  openPopup();
+  document.addEventListener('keydown', function () {
+    onPopupEscPress();
+  });
+});
+openSetupPopup.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+closeSetupPopup.addEventListener('click', function () {
+  closePopup();
+});
+closeSetupPopup.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
