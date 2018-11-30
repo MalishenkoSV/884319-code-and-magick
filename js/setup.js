@@ -7,8 +7,8 @@ var similarListElement = setup.querySelector('.setup-similar-list');
 
 var WIZARD_NAMES = ['Иван', 'Хуан', 'Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
+var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var NUMBERS_WIZARD = 4;
 var ESC_KEYCODE = 27;
 var ENTER_KEYCODE = 13;
@@ -22,8 +22,8 @@ var getRandomElementFromArray = function (arr) {
 var createWizard = function () {
   var wizardObject = {
     name: getRandomElementFromArray(WIZARD_NAMES) + ' ' + getRandomElementFromArray(WIZARD_SURNAMES),
-    coatColor: getRandomElementFromArray(COAT_COLOR),
-    eyes: getRandomElementFromArray(EYES_COLOR)
+    coatColor: getRandomElementFromArray(COAT_COLORS),
+    eyes: getRandomElementFromArray(EYES_COLORS)
   };
   return wizardObject;
 };
@@ -84,4 +84,15 @@ closeSetupPopup.addEventListener('keydown', function (evt) {
     closePopup();
   }
 });
-
+var coat = document.querySelector('.setup-wizard .wizard-coat');
+coat.closeSetupPopup.addEventListener('click', function () {
+  getRandomElementFromArray(COAT_COLORS);
+});
+var eyes = document.querySelector('.setup-wizard .wizard-eyes');
+eyes.closeSetupPopup.addEventListener('click', function () {
+  getRandomElementFromArray(EYES_COLORS);
+});
+var fireball = document.querySelector('.setup-fireball-wrap');
+fireball.closeSetupPopup.addEventListener('click', function () {
+  getRandomElementFromArray(EYES_COLORS);
+});
