@@ -1,7 +1,7 @@
 'use strict';
 var setup = document.querySelector('.setup');
-var similarListElement = setup.querySelector('.setup-similar');
-similarListElement.classList.remove('hidden');
+var setupSimilar = document.querySelector('.setup-similar');
+setupSimilar.classList.remove('hidden');
 
 var WIZARD_NAMES = ['Иван', 'Хуан', 'Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -16,7 +16,6 @@ var getRandomIntegerFromInterval = function (min, max) {
 };
 var getRandomElementFromArray = function (arr) {
   return arr[getRandomIntegerFromInterval(0, arr.length - 1)];
-
 };
 var createWizard = function () {
   var wizardObject = {
@@ -31,24 +30,25 @@ for (var i = 0; i < NUMBERS_WIZARD; i++) {
   var wizard = createWizard();
   wizards.push(wizard);
 }
-var similarWizardTemplate = document.querySelector('#similar-wizard-template')
+var similarTemplate = document.querySelector('#similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
 
 var renderWizardClone = function (wizardOriginal) {
   wizardOriginal = wizard;
-  var wizardClone = similarWizardTemplate.cloneNode(true);
-  wizardClone.querySelector('.setup-similar-label').textContent = wizardOriginal.name;
-  wizardClone.querySelector('.wizard-coat').style.fill = wizardOriginal.coatColor;
-  wizardClone.querySelector('.wizard-eyes').style.fill = wizardOriginal.eyes;
-  return wizardClone;
+  var wizardCloneElement = similarTemplate.cloneNode(true);
+  wizardCloneElement.querySelector('.setup-similar-label').textContent = wizardOriginal.name;
+  wizardCloneElement.querySelector('.wizard-coat').style.fill = wizardOriginal.coatColor;
+  wizardCloneElement.querySelector('.wizard-eyes').style.fill = wizardOriginal.eyes;
+  return wizardCloneElement;
 };
 var fragment = document.createDocumentFragment();
 for (var j = 0; j < wizards.length; j++) {
-  var wizardElement = renderWizardClone(wizards[j]);
-  fragment.appendChild(wizardElement);
-  similarListElement.appendChild(fragment);
+  var element = renderWizardClone(wizards[i]);
+  fragment.appendChild(element);
 }
+var similarListElement = document.querySelector('setup-similar-list');
+similarListElement.appendChild(fragment);
 
 var openSetupPopup = document.querySelector('.setup-open');
 var closeSetupPopup = document.querySelector('.setup-close');
