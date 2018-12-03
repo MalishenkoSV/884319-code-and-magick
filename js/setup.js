@@ -44,10 +44,10 @@ var renderWizardClone = function (wizardOriginal) {
 };
 var fragment = document.createDocumentFragment();
 for (var j = 0; j < wizards.length; j++) {
-  var element = renderWizardClone(wizards[i]);
+  var element = renderWizardClone(wizards[j]);
   fragment.appendChild(element);
 }
-var similarListElement = document.querySelector('setup-similar-list');
+var similarListElement = document.querySelector('.setup-similar-list');
 similarListElement.appendChild(fragment);
 
 var openSetupPopup = document.querySelector('.setup-open');
