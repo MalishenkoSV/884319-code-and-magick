@@ -35,7 +35,6 @@ var similarTemplate = document.querySelector('#similar-wizard-template')
     .querySelector('.setup-similar-item');
 
 var renderWizardClone = function (wizardOriginal) {
-  wizardOriginal = wizard;
   var wizardCloneElement = similarTemplate.cloneNode(true);
   wizardCloneElement.querySelector('.setup-similar-label').textContent = wizardOriginal.name;
   wizardCloneElement.querySelector('.wizard-coat').style.fill = wizardOriginal.coatColor;
